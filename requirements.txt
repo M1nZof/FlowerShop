@@ -1,4 +1,5 @@
 Django==4.2.4
 django-tinymce==3.6.1
+phonenumbers==8.13.19
 django-phonenumber-field==7.1.0
 Pillow==10.0.0
