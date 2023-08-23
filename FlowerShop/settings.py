@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'flower_app',
+    'phonenumber_field',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
