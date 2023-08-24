@@ -3,13 +3,24 @@ from tinymce.models import HTMLField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
+class Composition(models.Model):
+    name = models.CharField('Компонент', max_length=30)
+
+    class Meta:
+        verbose_name = 'компонент'
+        verbose_name_plural = 'компоненты'
+
+    def __str__(self):
+        return self.name
+
+
 class Bouquet(models.Model):
     name = models.CharField('Название', max_length=50)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
     image = models.ImageField('Картинка')
-    composition = HTMLField('Состав')
-    height = models.IntegerField('Высота')
-    width = models.DecimalField('Ширина', max_digits=10, decimal_places=1)
+    composition = models.ManyToManyField(Composition)
+    height = models.IntegerField('Высота в сантиметрах')
+    width = models.IntegerField('Ширина в сантиметрах')
     # categories = models.ForeignKey(Category, ..., )       # Не уверен, что нужно будет, но фигурирует в quiz.html
     description = HTMLField('Описание')
 

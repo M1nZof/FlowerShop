@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from flower_app.models import Bouquet, Place, Consultation, Order
+from flower_app.models import Bouquet, Place, Consultation, Order, Composition
 
 
 @admin.register(Bouquet)
@@ -20,4 +20,9 @@ class ConsultationAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Composition)
+class CompositionAdmin(admin.ModelAdmin):
     pass
