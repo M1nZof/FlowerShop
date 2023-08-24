@@ -1,4 +1,8 @@
+from pprint import pprint
+
 from django.shortcuts import render
+
+from flower_app.models import Bouquet
 
 
 def index(request):
@@ -10,7 +14,8 @@ def card(request):
 
 
 def catalog(request):
-	return render(request, 'catalog.html')
+	bouquets = Bouquet.objects.all()
+	return render(request, 'catalog.html', context={'bouquets': bouquets})
 
 
 def consultation(request):
@@ -30,6 +35,7 @@ def quiz(request):
 
 
 def quiz_step(request):
+	pprint(request.__dict__)
 	return render(request, 'quiz-step.html')
 
 
