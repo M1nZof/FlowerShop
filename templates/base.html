@@ -16,12 +16,12 @@
 <header id="header">
 	<div class="container">
 		<div class="header ficb">
-			<a href="/static"><img src="{% static 'img/logo.svg' %}" alt="logo" class="logo"></a>
+			<a href="{% url 'index' %}"><img src="{% static 'img/logo.svg' %}" alt="logo" class="logo"></a>
 			<nav>
 				<ul class="menu ficc">
-					<li class="menu__item"><a href="#" class="menu__item_link">Каталог</a></li>
-					<li class="menu__item"><a href="#" class="menu__item_link">Рекомендации</a></li>
-					<li class="menu__item"><a href="#" class="menu__item_link">Контакты</a></li>
+					<li class="menu__item"><a href="{% url 'catalog' %}" class="menu__item_link">Каталог</a></li>
+					<li class="menu__item"><a href="{% url 'index' %}" class="menu__item_link">Рекомендации</a></li>
+					<li class="menu__item"><a href="#footer" class="menu__item_link">Контакты</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -39,9 +39,9 @@
 			<a href="/static"><img src="{% static 'img/logo.svg' %}" alt="logo" class="logo footer__logo"></a>
 			<nav>
 				<ul class="menu footer__menu ficc">
-					<li class="menu__item"><a href="#" class="menu__item_link">Каталог</a></li>
-					<li class="menu__item"><a href="#" class="menu__item_link">Рекомендации</a></li>
-					<li class="menu__item"><a href="#" class="menu__item_link">Контакты</a></li>
+					<li class="menu__item"><a href="{% url 'catalog' %}" class="menu__item_link">Каталог</a></li>
+					<li class="menu__item"><a href="{% url 'index' %}" class="menu__item_link">Рекомендации</a></li>
+					<li class="menu__item"><a href="#footer" class="menu__item_link">Контакты</a></li>
 				</ul>
 			</nav>
 			<hr class="line"></hr>
