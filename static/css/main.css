@@ -334,15 +334,15 @@ opacity: 0.3;
 /*.recommended__elems_first .recommended__block_sec {*/
 /*	background: url('../img/catalog/catalogBg1.jpg') no-repeat center bottom / cover;*/
 /*}*/
-.recommended__elems_first .recommended__block_thr {
-	background: url('../img/catalog/catalogBg2.jpg') no-repeat center bottom / cover;
-}
-.recommended__elems_sec .recommended__block_first {
-	background: url('../img/catalog/catalogBg3.jpg') no-repeat center bottom / cover;
-}
-.recommended__elems_sec .recommended__block_sec {
-	background: url('../img/catalog/catalogBg4.jpg') no-repeat center bottom / cover;
-}
+/*.recommended__elems_first .recommended__block_thr {*/
+/*	background: url('../img/catalog/catalogBg2.jpg') no-repeat center bottom / cover;*/
+/*}*/
+/*.recommended__elems_sec .recommended__block_first {*/
+/*	background: url('../img/catalog/catalogBg3.jpg') no-repeat center bottom / cover;*/
+/*}*/
+/*.recommended__elems_sec .recommended__block_sec {*/
+/*	background: url('../img/catalog/catalogBg4.jpg') no-repeat center bottom / cover;*/
+/*}*/
 
 
 /*card.html*/
