@@ -2,7 +2,7 @@ from pprint import pprint
 
 from django.shortcuts import render
 
-from flower_app.models import Bouquet
+from flower_app.models import Bouquet, Consultation
 
 
 def index(request):
@@ -19,6 +19,11 @@ def catalog(request):
 
 
 def consultation(request):
+	if request.method == 'POST':
+		name = request.POST['fname']
+		phone_number = request.POST['tel']
+		new_consultation = Consultation.objects.create(name=name, phone_number=phone_number)
+		new_consultation.save()
 	return render(request, 'consultation.html')
 
 

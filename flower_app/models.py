@@ -55,7 +55,7 @@ class Consultation(models.Model):
         verbose_name_plural = 'консультации'
 
     def __str__(self):
-        return f'{self.name} | {self.time}'
+        return f'{self.name} | {self.phone_number} | {self.time}'
 
 
 class Order(models.Model):
