@@ -2,11 +2,13 @@ from pprint import pprint
 
 from django.shortcuts import render
 
-from flower_app.models import Bouquet, Consultation
+from flower_app.models import Bouquet, Consultation, Place
 
 
 def index(request):
-	return render(request, 'index.html')
+	bouquets = Bouquet.objects.all()[:3]
+	places = Place.objects.all()
+	return render(request, 'index.html', context={'bouquets': bouquets, 'places': places})
 
 
 def card(request):
