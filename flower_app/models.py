@@ -1,5 +1,4 @@
 from django.db import models
-from tinymce.models import HTMLField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -22,7 +21,7 @@ class Bouquet(models.Model):
     height = models.IntegerField('Высота в сантиметрах')
     width = models.IntegerField('Ширина в сантиметрах')
     categories = models.ManyToManyField('Category', verbose_name='Для каких поводов', related_name='bouquets')
-    description = HTMLField('Описание')
+    description = models.TextField('Описание')
 
     class Meta:
         verbose_name = 'букет'
@@ -30,6 +29,12 @@ class Bouquet(models.Model):
 
     def __str__(self):
         return f'{self.name}, {self.price} руб.'
+
+
+class CompositionSet(models.Model):
+    composition = models.ForeignKey(Composition, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField('Количество', default=1)
+    bouquet = models.ForeignKey(Bouquet, on_delete=models.PROTECT)
 
 
 class Place(models.Model):
@@ -61,8 +66,8 @@ class Consultation(models.Model):
 class Order(models.Model):
     name = models.CharField('Имя клиента', max_length=50)
     phone_number = PhoneNumberField(region='RU', verbose_name='Телефон клиента')
-    address = models.CharField('Адрес доставки', max_length=100, blank=True, null=True)  # null+blank для самовывоза
-    time = models.TimeField('Время доставки', blank=True, null=True)                     # аналогично
+    address = models.CharField('Адрес доставки', max_length=100)
+    time = models.TimeField('Время доставки', blank=True, null=True)
     email = models.EmailField('Почта клиента', blank=True, null=True)
 
     class Meta:

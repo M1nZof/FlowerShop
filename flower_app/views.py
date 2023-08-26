@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from flower_app.models import Bouquet, Consultation, Place, Category
+from flower_app.models import Bouquet, Consultation, Place, Category, CompositionSet
 
 
 def index(request):
@@ -14,6 +14,7 @@ def card(request, bouquet_id):
 
 	context = {
 		'bouquet': bouquet,
+		'compositions': CompositionSet.objects.filter(bouquet=bouquet)
 	}
 	return render(request, 'card.html', context=context)
 

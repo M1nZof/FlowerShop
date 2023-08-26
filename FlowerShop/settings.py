@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     'flower_app',
     'phonenumber_field',
-    'tinymce',
 ]
 
 MIDDLEWARE = [

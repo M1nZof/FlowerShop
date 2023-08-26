@@ -1,11 +1,19 @@
 from django.contrib import admin
 
-from flower_app.models import Bouquet, Place, Consultation, Order, Composition, Category
+from flower_app.models import Bouquet, Place, Consultation, Order, Composition, Category, CompositionSet
+
+
+class CompositionSetInline(admin.TabularInline):
+    model = CompositionSet
+    extra = 1
 
 
 @admin.register(Bouquet)
 class BouquetAdmin(admin.ModelAdmin):
-    pass
+    inlines = [
+        CompositionSetInline
+    ]
+    exclude = ('composition', )
 
 
 @admin.register(Place)
@@ -29,5 +37,5 @@ class CompositionAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CompositionAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     pass
