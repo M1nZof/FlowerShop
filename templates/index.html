@@ -10,7 +10,7 @@
 				<div class="banner__block">
 					<h1 class="banner__title">Мастерская цветов</h1>
 					<p class="banner__text">Подберем для вас букет за два шага, который идеально подойдет под вашу ситуацию</p>
-					<button onclick="location.href='/consultation/'" class="btn banner__btn" type="button">Подобрать букет</button>
+                    <a href="{% url 'quiz' %}"><button class="btn banner__btn" style='z-index:5;'>Подобрать букет</button></a>
 				</div>
 				<img src="{% static 'img/bannerImg.png' %}" alt="banner Img" class="banner__img">
 			</div>

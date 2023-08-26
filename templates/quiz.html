@@ -11,11 +11,20 @@
 				</div>
 				<div class="quiz__block">
 					<h1 class="quiz__title">К какому событию нужен букет?</h1>
-					<div class="quiz__elems fic">
-						<button class="quiz__elem">Свадьба</button>
-						<button class="quiz__elem">День рождения</button>
-						<button class="quiz__elem">Без повода</button>
-					</div>
+                    <div class="quiz__elems fic">
+                    	<form action="{% url 'quiz_step' %}" method="get">
+							{% for category in categories %}
+								<input type="submit" class="quiz__elem" name="category" value="{{ category.title }}">
+							{% endfor %}
+						</form>
+                    </div>
+
+{#					<div class="quiz__elems fic">#}
+{#						<button class="quiz__elem">Свадьба</button>#}
+{#						<button class="quiz__elem">День рождения</button>#}
+{#						<button class="quiz__elem">Без повода</button>#}
+{#					</div>#}
+
 					<div class="quiz__progress">
 						<div class="quiz__progress_step">
 							<span class="quiz__progress_num">1</span>

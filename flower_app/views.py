@@ -2,7 +2,7 @@ from pprint import pprint
 
 from django.shortcuts import render
 
-from flower_app.models import Bouquet, Consultation, Place
+from flower_app.models import Bouquet, Consultation, Place, Category, Composition
 
 
 def index(request):
@@ -38,11 +38,15 @@ def order_step(request):
 
 
 def quiz(request):
-	return render(request, 'quiz.html')
+	context = {
+		'categories': Category.objects.all()
+	}
+	return render(request, 'quiz.html', context=context)
 
 
 def quiz_step(request):
-	pprint(request.__dict__)
+
+	print(request.GET.get('category'))
 	return render(request, 'quiz-step.html')
 
 

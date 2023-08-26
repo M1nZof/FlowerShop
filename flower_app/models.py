@@ -21,7 +21,7 @@ class Bouquet(models.Model):
     composition = models.ManyToManyField(Composition)
     height = models.IntegerField('Высота в сантиметрах')
     width = models.IntegerField('Ширина в сантиметрах')
-    # categories = models.ForeignKey(Category, ..., )       # Не уверен, что нужно будет, но фигурирует в quiz.html
+    categories = models.ManyToManyField('Category', verbose_name='Для каких поводов', related_name='bouquets')       # Не уверен, что нужно будет, но фигурирует в quiz.html
     description = HTMLField('Описание')
 
     class Meta:
@@ -71,3 +71,14 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.name} | {self.phone_number} | {self.address} | {self.email}'
+
+
+class Category(models.Model):
+    title = models.CharField('Повод', max_length=50)
+
+    class Meta:
+        verbose_name = 'Повод'
+        verbose_name_plural = 'Поводы'
+
+    def __str__(self):
+        return self.title
