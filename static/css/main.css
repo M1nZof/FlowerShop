@@ -555,8 +555,8 @@ height: 57px;
 	margin-bottom: 17px;
 	color: #ABABAB;
 }
-.result__items_block__btn {
-	margin-bottom: 10px;
+.result__items_block__btn a {
+	margin-bottom: 5px;
 	margin-top: 0;
 }
 .result__items_block__btn:last-child {

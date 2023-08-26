@@ -13,7 +13,7 @@
                             <div class="card__elems ">
                                 <span class="card__elems_intro">Описание:</span>
                                 <div class="card__items">
-                                    <p class="card__items_text card__items_text__first">{{ bouquet.description  }}</p>
+                                    <p class="card__items_text card__items_text__first">{{ bouquet.description | safe}}</p>
                                 </div>
                             </div>
                             <div class="card__elems ">
@@ -28,14 +28,14 @@
                         </div>
                         <img src="{{ bouquet.image }}" alt="result Img" class="result__block_img">
                         <div class="result__items">
-                            <div class="title result__items_title">{{ bouquet.title }}</div>
-                            <div class="result__items_price">{{ bouquet.price }} руб</div>
-                           <button class="btn result__items_btn" onclick="location.href='{% url 'order' %}'">Заказать букет</button>  {#  bouquet.id #}
-                            <hr class="result__items_line" />
-                            <div class="result__items_intro">Хотите что-то более специальное?</div>
-                            <div class="result__items_block">
-                            <a href="{% url 'catalog' %}"><button class="btn largeBtn result__items_block__btn">Смотреть всю коллекцию</button></a>
-								<a href="#consultation"><button class="btn largeBtn result__items_block__btn">Заказать консультацию</button></a>
+                                <div class="title result__items_title">{{ bouquet.title }}</div>
+                                <div class="result__items_price">{{ bouquet.price }} руб</div>
+                                <button class="btn result__items_btn" onclick="location.href='{% url 'order' bouquet.id %}'">Заказать букет</button>
+                                <hr class="result__items_line" />
+                                <div class="result__items_intro">Хотите что-то более специальное?</div>
+                                <div class="result__items_block">
+                                <a href="{% url 'catalog' %}"><button class="btn largeBtn result__items_block__btn">Смотреть всю коллекцию</button></a>
+                                <a href="#consultation"><button class="btn largeBtn result__items_block__btn">Заказать консультацию</button></a>
                             </div>
                         </div>
                     </div>
