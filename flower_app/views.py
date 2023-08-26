@@ -11,8 +11,13 @@ def index(request):
 	return render(request, 'index.html', context={'bouquets': bouquets, 'places': places})
 
 
-def card(request):
-	return render(request, 'card.html')
+def card(request, bouquet_id):
+	bouquet = Bouquet.objects.get(id=bouquet_id)
+
+	context = {
+		'bouquet': bouquet,
+	}
+	return render(request, 'card.html', context=context)
 
 
 def catalog(request):
