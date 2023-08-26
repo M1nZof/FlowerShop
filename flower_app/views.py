@@ -32,7 +32,7 @@ def consultation(request):
 	return render(request, 'consultation.html')
 
 
-def order(request):
+def order(request, bouquet_id):
 	return render(request, 'order.html')
 
 
