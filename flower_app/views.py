@@ -1,8 +1,6 @@
-from pprint import pprint
-
 from django.shortcuts import render
 
-from flower_app.models import Bouquet, Consultation, Place, Category, Composition
+from flower_app.models import Bouquet, Consultation, Place, Category
 
 
 def index(request):
@@ -81,12 +79,12 @@ def result(request):
 				'id': bouquet.id,
 				'title': bouquet.name,
 				'description': bouquet.description,
+				'compositions': ', '.join(map(str, bouquet.composition.all())),
 				'image': bouquet.image.url,
 				'price': bouquet.price,
 			}
 			for bouquet in bouquets
 		]
 	}
-
 	return render(request, 'result.html', context=context)
 
