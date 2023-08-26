@@ -45,11 +45,44 @@ def quiz(request):
 
 
 def quiz_step(request):
-
-	print(request.GET.get('category'))
-	return render(request, 'quiz-step.html')
+	category = request.GET.get('category')
+	request.session['category'] = category
+	prices = set(
+		f'{(bouquet.price // 1000) * 1000} - {(bouquet.price // 1000 + 1) * 1000} руб.'
+		for bouquet in Category.objects.get(title=category).bouquets.all()
+	)
+	prices.add('Не имеет значения')
+	context = {
+		'prices': sorted(prices)
+	}
+	return render(request, 'quiz-step.html', context=context)
 
 
 def result(request):
-	return render(request, 'result.html')
+	prices = request.GET.get('price')
+	category = request.session['category']
+	bouquets = Category.objects.get(title=category).bouquets.all()
+	if prices != 'Не имеет значения':
+		min_price, max_price = [int(s) for s in prices.split() if s.isdigit()]
+		print(min_price, max_price)
+		bouquets = [
+			bouquet for bouquet
+			in bouquets
+			if min_price < bouquet.price < max_price
+		]
+
+	context = {
+		'bouquets': [
+			{
+				'id': bouquet.id,
+				'title': bouquet.name,
+				'description': bouquet.description,
+				'image': bouquet.image.url,
+				'price': bouquet.price,
+			}
+			for bouquet in bouquets
+		]
+	}
+
+	return render(request, 'result.html', context=context)
 

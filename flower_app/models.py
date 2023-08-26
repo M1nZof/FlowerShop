@@ -18,10 +18,10 @@ class Bouquet(models.Model):
     name = models.CharField('Название', max_length=50)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
     image = models.ImageField('Картинка')
-    composition = models.ManyToManyField(Composition)
+    composition = models.ManyToManyField(Composition, blank=True)
     height = models.IntegerField('Высота в сантиметрах')
     width = models.IntegerField('Ширина в сантиметрах')
-    categories = models.ManyToManyField('Category', verbose_name='Для каких поводов', related_name='bouquets')       # Не уверен, что нужно будет, но фигурирует в quiz.html
+    categories = models.ManyToManyField('Category', verbose_name='Для каких поводов', related_name='bouquets')
     description = HTMLField('Описание')
 
     class Meta:

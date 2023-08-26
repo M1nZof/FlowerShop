@@ -12,19 +12,26 @@
 			<div class="quiz__block">
 				<h1 class="quiz__title">На какой бюджет рассчитываете?</h1>
 				<div class="quiz__elems fic">
-					<button class="quiz__elem">До 1 000 руб</button>
-					<button class="quiz__elem">1 000 - 5 000 руб</button>
-					<button class="quiz__elem">от 5 000 руб</button>
-					<button class="quiz__elem">Не имеет значения</button>
+
+                    <form action="{% url 'result' %}" method="get">
+                        {% for price in prices %}
+                            <input type="submit" class="quiz__elem" name="price" value="{{ price }}">
+                        {% endfor %}
+                    </form>
+
+{#					<button class="quiz__elem">До 1 000 руб</button>#}
+{#					<button class="quiz__elem">1 000 - 5 000 руб</button>#}
+{#					<button class="quiz__elem">от 5 000 руб</button>#}
+{#					<button class="quiz__elem">Не имеет значения</button>#}
 				</div>
 				<div class="quiz__progress">
 					<div class="quiz__progress_step">
-						<span class="quiz__progress_num">1</span>
+						<span class="quiz__progress_num">2</span>
 						<span class="quiz__progress_in"> шаг из </span>
 						<span class="quiz__progress_num">2</span>
 					</div>
 					<div class="quiz__progress_line">
-						<div class="quiz__progress_lineActive"></div>
+						<div class="quiz__progress_lineActive" style="width: 100%"></div>
 					</div>
 				</div>
 			</div>
