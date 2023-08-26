@@ -64,7 +64,6 @@ def result(request):
 	bouquets = Category.objects.get(title=category).bouquets.all()
 	if prices != 'Не имеет значения':
 		min_price, max_price = [int(s) for s in prices.split() if s.isdigit()]
-		print(min_price, max_price)
 		bouquets = [
 			bouquet for bouquet
 			in bouquets
