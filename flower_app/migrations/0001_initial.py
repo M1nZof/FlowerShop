@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 import phonenumber_field.modelfields
-import tinymce.models
 
 
 class Migration(migrations.Migration):
@@ -20,10 +19,10 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50, verbose_name='Название')),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Цена')),
                 ('image', models.ImageField(upload_to='', verbose_name='Картинка')),
-                ('composition', tinymce.models.HTMLField(verbose_name='Состав')),
+                ('composition', models.TextField(verbose_name='Состав')),
                 ('height', models.IntegerField(verbose_name='Высота')),
                 ('width', models.DecimalField(decimal_places=1, max_digits=10, verbose_name='Ширина')),
-                ('description', tinymce.models.HTMLField(verbose_name='Описание')),
+                ('description', models.TextField(verbose_name='Описание')),
             ],
             options={
                 'verbose_name': 'букет',

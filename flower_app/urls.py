@@ -15,5 +15,4 @@ urlpatterns = [
     path('quiz/', views.quiz, name='quiz'),
     path('quiz_step/', views.quiz_step, name='quiz_step'),
     path('result/', views.result, name='result'),
-    path('tinymce/', include('tinymce.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
