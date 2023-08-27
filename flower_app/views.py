@@ -1,6 +1,11 @@
+import json
+import uuid
+
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
+from environs import Env
+from yookassa import Configuration, Payment
 
 from flower_app.models import Bouquet, Consultation, Place, Category, CompositionSet, Order
 from .forms import OrderForm
@@ -62,8 +67,32 @@ def order(request, bouquet_id):
 
 
 def order_step(request, order_id):
+	env = Env()
+	env.read_env()
 
-	return render(request, 'order-step.html')
+	yookassa_account_id = env('YOOKASSA_ACCOUNT_ID')
+	yookassa_secret_key = env('YOOKASSA_SECRET_KEY')
+	Configuration.account_id = yookassa_account_id
+	Configuration.secret_key = yookassa_secret_key
+
+	order = Order.objects.get(id=order_id)
+
+	payment = Payment.create({
+		"amount": {
+			"value": f'{order.price}',
+			"currency": "RUB"
+		},
+		"confirmation": {
+			"type": "redirect",
+			"return_url": 'http://127.0.0.1:8000/'
+		},
+		"capture": True,
+		"description": "Заказ №1"
+	}, uuid.uuid4())
+
+	url = json.loads(payment.json())['confirmation']['confirmation_url']
+
+	return redirect(url)
 
 
 def quiz(request):
