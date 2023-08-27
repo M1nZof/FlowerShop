@@ -1,6 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
-from flower_app.models import Bouquet, Consultation, Place, Category, CompositionSet
+from flower_app.models import Bouquet, Consultation, Place, Category, CompositionSet, Order
+from .forms import OrderForm
 
 
 def index(request):
@@ -34,10 +37,34 @@ def consultation(request):
 
 
 def order(request, bouquet_id):
-	return render(request, 'order.html')
+	delivery_times = Order.DELIVERY_TIME
+	context = {
+		'delivery_times': [delivery_time[1] for delivery_time in delivery_times]
+	}
+	if request.method == 'POST':
+		form = OrderForm(request.POST)
+		if form.is_valid():
+			bouquet = Bouquet.objects.get(id=bouquet_id)
+			order = Order.objects.create(
+				name=form.cleaned_data['name'],
+				phone_number=form.cleaned_data['phone_number'],
+				address=form.cleaned_data['address'],
+				time=form.cleaned_data['time'],
+				bouquet=bouquet,
+				price=bouquet.price,
+			)
+			order.save()
+
+			return HttpResponseRedirect(reverse('order_step', args=[order.id]))
+	else:
+		form = OrderForm()
+
+	context['form'] = form
+	return render(request, 'order.html', context=context)
 
 
-def order_step(request):
+def order_step(request, order_id):
+
 	return render(request, 'order-step.html')
 
 

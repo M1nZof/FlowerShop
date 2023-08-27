@@ -64,11 +64,21 @@ class Consultation(models.Model):
 
 
 class Order(models.Model):
+    DELIVERY_TIME = [
+        ('ASAP', 'Как можно скорее'),
+        ('FROM_10_TO_12', 'С 10:00 до 12:00'),
+        ('FROM_12_TO_14', 'С 12:00 до 14:00'),
+        ('FROM_14_TO_16', 'С 14:00 до 16:00'),
+        ('FROM_16_TO_18', 'С 16:00 до 18:00'),
+        ('FROM_18_TO_20', 'С 18:00 до 20:00'),
+    ]
     name = models.CharField('Имя клиента', max_length=50)
     phone_number = PhoneNumberField(region='RU', verbose_name='Телефон клиента')
     address = models.CharField('Адрес доставки', max_length=100)
-    time = models.TimeField('Время доставки', blank=True, null=True)
+    time = models.CharField('Время доставки', choices=DELIVERY_TIME, max_length=50, blank=True, null=True)
     email = models.EmailField('Почта клиента', blank=True, null=True)
+    bouquet = models.ForeignKey(Bouquet, related_name='order', on_delete=models.PROTECT, verbose_name='Букет')
+    price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
 
     class Meta:
         verbose_name = 'заказ'
