@@ -75,40 +75,39 @@ def order(request, bouquet_id):
     else:
         form = OrderForm()
 
-	context = {
-		'form': form,
-	}
-	return render(request, 'order.html', context=context)
+    context = {
+        'form': form,
+    }
+    return render(request, 'order.html', context=context)
 
 
 def order_step(request, order_id):
-    return render(request, 'order-step.html')
-	env = Env()
-	env.read_env()
+    env = Env()
+    env.read_env()
 
-	yookassa_account_id = env('YOOKASSA_ACCOUNT_ID')
-	yookassa_secret_key = env('YOOKASSA_SECRET_KEY')
-	Configuration.account_id = yookassa_account_id
-	Configuration.secret_key = yookassa_secret_key
+    yookassa_account_id = env('YOOKASSA_ACCOUNT_ID')
+    yookassa_secret_key = env('YOOKASSA_SECRET_KEY')
+    Configuration.account_id = yookassa_account_id
+    Configuration.secret_key = yookassa_secret_key
 
-	order = Order.objects.get(id=order_id)
+    order = Order.objects.get(id=order_id)
 
-	payment = Payment.create({
-		"amount": {
-			"value": f'{order.price}',
-			"currency": "RUB"
-		},
-		"confirmation": {
-			"type": "redirect",
-			"return_url": 'http://127.0.0.1:8000/'
-		},
-		"capture": True,
-		"description": "Заказ №1"
-	}, uuid.uuid4())
+    payment = Payment.create({
+        "amount": {
+            "value": f'{order.price}',
+            "currency": "RUB"
+        },
+        "confirmation": {
+            "type": "redirect",
+            "return_url": 'http://127.0.0.1:8000/'
+        },
+        "capture": True,
+        "description": "Заказ №1"
+    }, uuid.uuid4())
 
-	url = json.loads(payment.json())['confirmation']['confirmation_url']
+    url = json.loads(payment.json())['confirmation']['confirmation_url']
 
-	return redirect(url)
+    return redirect(url)
 
 
 def quiz(request):
