@@ -5,10 +5,9 @@ import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from environs import Env
 from yookassa import Configuration, Payment
 
-from FlowerShop.settings import TG_BOT_TOKEN, TG_CHAT_ID
+from FlowerShop.settings import TG_BOT_TOKEN, TG_CHAT_ID, YOOKASSA_ACCOUNT_ID, YOOKASSA_SECRET_KEY
 from flower_app.models import Bouquet, Consultation, Place, Category, CompositionSet, Order
 from .forms import OrderForm
 
@@ -82,13 +81,8 @@ def order(request, bouquet_id):
 
 
 def order_step(request, order_id):
-    env = Env()
-    env.read_env()
-
-    yookassa_account_id = env('YOOKASSA_ACCOUNT_ID')
-    yookassa_secret_key = env('YOOKASSA_SECRET_KEY')
-    Configuration.account_id = yookassa_account_id
-    Configuration.secret_key = yookassa_secret_key
+    Configuration.account_id = YOOKASSA_ACCOUNT_ID
+    Configuration.secret_key = YOOKASSA_SECRET_KEY
 
     order = Order.objects.get(id=order_id)
 
