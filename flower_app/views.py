@@ -37,10 +37,6 @@ def consultation(request):
 
 
 def order(request, bouquet_id):
-	delivery_times = Order.DELIVERY_TIME
-	context = {
-		'delivery_times': [delivery_time[1] for delivery_time in delivery_times]
-	}
 	if request.method == 'POST':
 		form = OrderForm(request.POST)
 		if form.is_valid():
@@ -59,7 +55,9 @@ def order(request, bouquet_id):
 	else:
 		form = OrderForm()
 
-	context['form'] = form
+	context = {
+		'form': form,
+	}
 	return render(request, 'order.html', context=context)
 
 
