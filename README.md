@@ -1,12 +1,12 @@
 # Сайт доставки цветов FlowerShop
 
 Это сайт цветочного магазина FlowerShop. Здесь можно заказать доставку цветов или записаться на консультацию по оформлению букета
-![Главная]
+![Главная](https://github.com/M1nZof/FlowerShop/blob/main/static/img/index.PNG)
 
 ## Как посмотреть развернутый проект
 [Сайт](https://flowershopdvmn.pythonanywhere.com/)
 
-### Данные для входа в admin
+Данные для входа в admin
 Логин: ol
 
 Пароль: ol
@@ -18,10 +18,15 @@ pip install -r requirements.txt
 ```
 ### Определение переменных окружения
 #### Описание переменных окружения
+
 `YOOKASSA_ACCOUNT_ID` - ID аккаунта ЮКасса
+
 `YOOKASSA_SECRET_KEY` - Секретный ключ от ЮКасса
+
 `TG_BOT_TOKEN` - Токен Telegram-бота
+
 `TG_CHAT_ID` - Чат телеграм-канала или пользователя
+
 #### Пример переменных окружения
 ```sh
 export YOOKASSA_ACCOUNT_ID=248066
